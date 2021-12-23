@@ -98,8 +98,8 @@ class _WishlistFormScreenState extends State<WishlistFormScreen> {
                                     content:
                                         Text('Wishlist added successfully!')),
                               );
-                              Navigator.of(context)
-                                  .pushReplacementNamed(HomeScreen.routeName);
+                              Navigator.of(context).pushNamedAndRemoveUntil(
+                                  HomeScreen.routeName, (route) => false);
                               setState(() {});
                             }
                           });

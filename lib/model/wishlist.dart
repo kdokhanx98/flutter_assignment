@@ -26,7 +26,7 @@ class _WishListState extends State<WishList> {
     final height = MediaQuery.of(context).size.height;
     return InkWell(
       onTap: () {
-        Navigator.of(context).pushReplacementNamed(EditWishlistScreen.routeName,
+        Navigator.of(context).pushNamed(EditWishlistScreen.routeName,
             arguments: WishList(widget.name, widget.description, widget.price,
                 wishListId: widget.wishListId));
       },

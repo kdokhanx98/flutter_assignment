@@ -36,46 +36,47 @@ class _HomeScreenState extends State<HomeScreen> {
         Provider.of<DatabaseProvider>(context, listen: false).getWishList;
     final authProvider = Provider.of<AuthProvider>(context, listen: false);
 
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text("Wishlist Tracker"),
-        automaticallyImplyLeading: false,
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.logout),
-            tooltip: 'Logout',
-            onPressed: () {
-              // logout user
-              authProvider.signout().then((value) => {
-                    Navigator.of(context)
-                        .pushReplacementNamed(LoginScreen.routeName)
-                  });
-            },
+    return WillPopScope(
+      onWillPop: () async => false,
+      child: Scaffold(
+        appBar: AppBar(
+          title: const Text("Wishlist Tracker"),
+          automaticallyImplyLeading: false,
+          actions: [
+            IconButton(
+              icon: const Icon(Icons.logout),
+              tooltip: 'Logout',
+              onPressed: () {
+                // logout user
+                authProvider.signout().then((value) =>
+                    {Navigator.of(context).pushReplacementNamed(LoginScreen.routeName)});
+              },
+            ),
+          ],
+        ),
+        body: loading
+            ? const Center(child: CircularProgressIndicator())
+            : ListView.builder(
+                shrinkWrap: true,
+                scrollDirection: Axis.vertical,
+                itemCount: wishListData.length,
+                itemBuilder: (BuildContext context, int index) {
+                  return WishList(
+                    wishListData[index].name,
+                    wishListData[index].description,
+                    wishListData[index].price,
+                    wishListId: wishListData[index].wishListId,
+                  );
+                }),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            navigateToForm(context);
+          },
+          child: const Icon(
+            Icons.add,
+            size: 25,
+            color: Colors.white,
           ),
-        ],
-      ),
-      body: loading
-          ? const Center(child: CircularProgressIndicator())
-          : ListView.builder(
-              shrinkWrap: true,
-              scrollDirection: Axis.vertical,
-              itemCount: wishListData.length,
-              itemBuilder: (BuildContext context, int index) {
-                return WishList(
-                  wishListData[index].name,
-                  wishListData[index].description,
-                  wishListData[index].price,
-                  wishListId: wishListData[index].wishListId,
-                );
-              }),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          navigateToForm(context);
-        },
-        child: const Icon(
-          Icons.add,
-          size: 25,
-          color: Colors.white,
         ),
       ),
     );
@@ -83,5 +84,5 @@ class _HomeScreenState extends State<HomeScreen> {
 }
 
 void navigateToForm(BuildContext context) {
-  Navigator.of(context).pushReplacementNamed(WishlistFormScreen.routeName);
+  Navigator.of(context).pushNamed(WishlistFormScreen.routeName);
 }

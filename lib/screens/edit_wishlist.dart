@@ -115,8 +115,8 @@ class _EditWishlistScreenState extends State<EditWishlistScreen> {
                                       content: Text(
                                           'Wishlist edited successfully!')),
                                 );
-                                Navigator.of(context)
-                                    .pushReplacementNamed(HomeScreen.routeName);
+                                   Navigator.of(context).pushNamedAndRemoveUntil(
+                                  HomeScreen.routeName, (route) => false);
                               }
                             });
                           }

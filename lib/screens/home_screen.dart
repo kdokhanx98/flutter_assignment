@@ -61,8 +61,12 @@ class _HomeScreenState extends State<HomeScreen> {
               scrollDirection: Axis.vertical,
               itemCount: wishListData.length,
               itemBuilder: (BuildContext context, int index) {
-                return WishList(wishListData[index].name,
-                    wishListData[index].description, wishListData[index].price, wishListId: wishListData[index].wishListId,);
+                return WishList(
+                  wishListData[index].name,
+                  wishListData[index].description,
+                  wishListData[index].price,
+                  wishListId: wishListData[index].wishListId,
+                );
               }),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
@@ -79,5 +83,5 @@ class _HomeScreenState extends State<HomeScreen> {
 }
 
 void navigateToForm(BuildContext context) {
-  Navigator.of(context).pushNamed(WishlistFormScreen.routeName);
+  Navigator.of(context).pushReplacementNamed(WishlistFormScreen.routeName);
 }

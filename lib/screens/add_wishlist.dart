@@ -75,31 +75,51 @@ class _WishlistFormScreenState extends State<WishlistFormScreen> {
               SizedBox(
                 height: height * 0.05,
               ),
-              SizedBox(
-                width: width * 0.4,
-                height: height * 0.05,
-                child: ElevatedButton(
-                  onPressed: () {
-                    // Validate returns true if the form is valid, or false otherwise.
-                    if (_formKey.currentState!.validate()) {
-                      databaseProvider
-                          .addWishlist(WishList(nameController.text,
-                              descriptionController.text, priceController.text))
-                          .then((value) {
-                        if (value) {
-                          _formKey.currentState!.reset();
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(
-                                content: Text('Wishlist added successfully!')),
-                          );
-                          Navigator.of(context)
-                              .pushReplacementNamed(HomeScreen.routeName);
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  SizedBox(
+                    width: width * 0.4,
+                    height: height * 0.05,
+                    child: ElevatedButton(
+                      onPressed: () {
+                        // Validate returns true if the form is valid, or false otherwise.
+                        if (_formKey.currentState!.validate()) {
+                          databaseProvider
+                              .addWishlist(WishList(
+                                  nameController.text,
+                                  descriptionController.text,
+                                  priceController.text))
+                              .then((value) {
+                            if (value) {
+                              _formKey.currentState!.reset();
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(
+                                    content:
+                                        Text('Wishlist added successfully!')),
+                              );
+                              Navigator.of(context)
+                                  .pushReplacementNamed(HomeScreen.routeName);
+                              setState(() {});
+                            }
+                          });
                         }
-                      });
-                    }
-                  },
-                  child: const Text('Add'),
-                ),
+                      },
+                      child: const Text('Add'),
+                    ),
+                  ),
+                  SizedBox(
+                    width: width * 0.4,
+                    height: height * 0.05,
+                    child: ElevatedButton(
+                      onPressed: () {
+                        Navigator.of(context)
+                            .pushReplacementNamed(HomeScreen.routeName);
+                      },
+                      child: const Text('Wishlist'),
+                    ),
+                  ),
+                ],
               ),
               SizedBox(
                 height: height * 0.05,

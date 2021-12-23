@@ -20,18 +20,17 @@ class WishList extends StatefulWidget {
 }
 
 class _WishListState extends State<WishList> {
-  bool isDeleting = false;
+
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
     return InkWell(
       onTap: () {
-        Navigator.of(context).pushNamed(EditWishlistScreen.routeName,
+        Navigator.of(context).pushReplacementNamed(EditWishlistScreen.routeName,
             arguments: WishList(widget.name, widget.description, widget.price,
                 wishListId: widget.wishListId));
       },
-      child: !isDeleting
-          ? Container(
+      child:  Container(
               height: height * 0.15,
               width: double.infinity,
               margin: const EdgeInsets.only(
@@ -114,9 +113,7 @@ class _WishListState extends State<WishList> {
                     ),
                     GestureDetector(
                       onTap: () {
-                        setState(() {
-                          isDeleting = !isDeleting;
-                        });
+                     
                         Provider.of<DatabaseProvider>(context, listen: false)
                             .removeWishList(widget.wishListId!)
                             .then((value) {
@@ -127,7 +124,6 @@ class _WishListState extends State<WishList> {
                                       Text('Wishlist deleted successfully')),
                             );
                             setState(() {
-                              isDeleting = !isDeleting;
                             });
                             Navigator.pushReplacement(
                               context,
@@ -161,9 +157,7 @@ class _WishListState extends State<WishList> {
                 ),
               ),
             )
-          : const Center(
-              child: CircularProgressIndicator(),
-            ),
+        
     );
   }
 }

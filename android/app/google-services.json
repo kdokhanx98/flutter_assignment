@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "259412398122",
+    "project_id": "whishlist-c1cd3",
+    "storage_bucket": "whishlist-c1cd3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:259412398122:android:c30e1a8abbe714143d7353",
+        "android_client_info": {
+          "package_name": "com.example.flutter_assignment"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "259412398122-a9r0nb84k4g2flrbp62c2fm03ijbnnv6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCZeU8jEu9u0a5rJA4mMNolC2eSxAmFk8Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "259412398122-a9r0nb84k4g2flrbp62c2fm03ijbnnv6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
